@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.long-text-handle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hidden {
+  display: none;
+}
+
+.shop {
+  // 商品框宽度
+  @product-size: 200px;
+  // 购物车模块背景色
+  @product-car-bg: rgb(211, 206, 206);
+
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 0 20px;
+
+  &-header {
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-productCar {
+      position: relative;
+      > button {
+        padding: 5px 10px;
+      }
+
+      &-list { 
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: @product-car-bg;
+        border: 1px solid #000;
+        width: 250px;
+        padding: 10px;
+
+        &::before {
+          display: block;
+          width: 0;
+          height: 0;
+          position: absolute;
+          bottom: 100%;
+          right: 15px;
+          border: 0 15px 15px 5px;
+          border-top: 0px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 8px solid @product-car-bg;
+          border-left: 10px solid transparent;
+          content: "";
+        }
+
+        &-item {
+          display: flex;
+          white-space: nowrap;
+          align-items: center;
+
+          &-detail {
+            display: flex;
+            width: 0;
+            flex-grow: 1;
+            margin-right: 5px;
+
+            span {
+              &:first-of-type {
+                width: 0;
+                flex-grow: 1;
+                .long-text-handle();
+              }
+            }
+          }
+
+          button {
+            padding: 5px;
+          }
+        }
+
+        &-buy {
+          margin-top: 10px;
+          padding: 5px 0;
+        }
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      border: 1px solid #000;
+      margin: 0 8px 8px 0;
+      padding: 8px;
+      width: @product-size;
+
+      img:first-of-type {
+        width: calc(~"@{product-size} - 16px");
+        height: calc(~"@{product-size} - 16px");
+      }
+
+      &-bottom {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        &-description {
+          flex-grow: 1;
+          width: 0;
+          display: flex;
+          justify-content: space-between;
+          margin-right: 10px;
+
+          span:first-of-type {
+            .long-text-handle();
+          }
+        }
+
+        &-add {
+          padding: 5px 10px;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+}
